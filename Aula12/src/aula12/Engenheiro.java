@@ -5,6 +5,8 @@
  */
 package aula12;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Aluno
@@ -15,10 +17,12 @@ public class Engenheiro extends Funcionario{
     public Engenheiro() {
     }
 
-    public Engenheiro(String CREA, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco) {
-        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, Setor.ENGENHARIA);
+    public Engenheiro(String CREA, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco, Setor setor, LocalDate date) {
+        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, setor, date);
         this.CREA = CREA;
     }
+
+    
 
     public String getCREA() {
         return CREA;
@@ -44,7 +48,9 @@ public class Engenheiro extends Funcionario{
                 "\nNumero" + this.endereco.getNumero()+
                 "\nComplemento" + this.endereco.getComplemento()+
                 "\nCep" + this.endereco.getCep()+
-                "\nCidade" + this.endereco.getCidade();
+                "\nCidade" + this.endereco.getCidade()+
+                "\nData" + this.getDate();
+                
                
     }
 

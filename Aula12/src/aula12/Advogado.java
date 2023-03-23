@@ -1,38 +1,39 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package aula12;
 
+import java.time.LocalDate;
+
 /**
  *
- * @author Lucas
+ * @author Aluno
  */
 public class Advogado extends Funcionario{
-    private String OAB;
+    private String oab;
 
-    public Advogado() {
+    public Advogado(String oab, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco, Setor setor, LocalDate date) {
+        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, setor, date);
+        this.oab = oab;
     }
 
-    public Advogado(String OAB, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco) {
-        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, Setor.JURIDICO);
-        this.OAB = OAB;
+    
+    public String getOab() {
+        return oab;
     }
 
-    public String getOAB() {
-        return OAB;
-    }
-
-    public void setOAB(String OAB) {
-        this.OAB = OAB;
+    public void setOab(String oab) {
+        this.oab = oab;
     }
 
     @Override
     public String toString() {
-        return "Advogado" + 
-                "OAB:" + OAB+
-                "\ncpf" + this.getCpf()+ 
-                "\nrg" + this.getRg() + 
+        return "Advogado -->" + 
+                "oab" + this.oab +
+                "\ncpf" + this.getCpf() + 
+                "\nrg" + super.getRg() + 
                 "\nSalario" + super.getSalario() + 
                 "\nmatricula" + super.getMatricula()+
                 "\nid"+  this.id +
@@ -43,9 +44,12 @@ public class Advogado extends Funcionario{
                 "\nNumero" + this.endereco.getNumero()+
                 "\nComplemento" + this.endereco.getComplemento()+
                 "\nCep" + this.endereco.getCep()+
-                "\nCidade" + this.endereco.getCidade();
+                "\nCidade" + this.endereco.getCidade()+
+                 "\nData" + this.getDate();
                 
     }
+    
+    
     
     
 }

@@ -5,6 +5,8 @@
  */
 package aula12;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Aluno
@@ -15,10 +17,12 @@ public class Medico extends Funcionario{
     public Medico() {
     }
 
-    public Medico(String CRM, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco) {
-        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, Setor.SAUDE);
+    public Medico(String CRM, String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco, Setor setor, LocalDate date) {
+        super(cpf, rg, Salario, matricula, id, nome, genero, endereco, setor, date);
         this.CRM = CRM;
     }
+
+    
 
     public String getCRM() {
         return CRM;
@@ -44,7 +48,8 @@ public class Medico extends Funcionario{
                 "\nNumero" + this.endereco.getNumero()+
                 "\nComplemento" + this.endereco.getComplemento()+
                 "\nCep" + this.endereco.getCep()+
-                "\nCidade" + this.endereco.getCidade();
+                "\nCidade" + this.endereco.getCidade()+
+                 "\nData" + this.getDate();
                 
     }
     

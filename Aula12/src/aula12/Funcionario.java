@@ -1,24 +1,28 @@
 
 package aula12;
 
+import java.time.LocalDate;
+
 
 public abstract class Funcionario extends Pessoa{
     private String cpf;
     private String rg;
     private String Salario;
     private String matricula;
-    private Setor setor;
 
     public Funcionario() {
+        
     }
 
-    public Funcionario(String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco,Setor setor) {
-        super(id, nome, genero, endereco, setor);
+    public Funcionario(String cpf, String rg, String Salario, String matricula, int id, String nome, Genero genero, Endereco endereco, Setor setor, LocalDate date) {
+        super(id, nome, genero, endereco, setor, date);
         this.cpf = cpf;
         this.rg = rg;
         this.Salario = Salario;
         this.matricula = matricula;
     }
+
+  
 
     
 

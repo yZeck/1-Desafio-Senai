@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aula12;
 
-/**
- *
- * @author Aluno
- */
+import java.time.LocalDate;
+
+
 public class Fornecedor extends Pessoa {
     
     private String cnpj;
@@ -17,11 +12,13 @@ public class Fornecedor extends Pessoa {
     public Fornecedor() {
     }
 
-    public Fornecedor(String cnpj, String inscricaoEstadual, int id, String nome, Genero genero, Endereco endereco, Setor setor) {
-        super(id, nome, genero, endereco, setor);
+    public Fornecedor(String cnpj, String inscricaoEstadual, int id, String nome, Genero genero, Endereco endereco, Setor setor, LocalDate date) {
+        super(id, nome, genero, endereco, setor, date);
         this.cnpj = cnpj;
         this.inscricaoEstadual = inscricaoEstadual;
     }
+
+   
 
     public String getCnpj() {
         return cnpj;
