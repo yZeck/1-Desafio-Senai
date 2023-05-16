@@ -1,0 +1,25 @@
+*{
+    width: auto 0;
+    height: auto 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+header{
+    background-color: aqua;
+}
+/* ids & class*/
+#footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: aqua;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+#footer>ul{
+display: flex;
+}
+#footer>ul>li{
+padding: 20px;
+}
+
