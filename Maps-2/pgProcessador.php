@@ -1,6 +1,7 @@
 <?php
 
 require_once "./conn.php";
+$pg = "pgProcessador.php";
 $table = "7graphiclucas";
 $query =  "SELECT * FROM $table";
 $stmt = $conn->prepare($query);
@@ -77,11 +78,12 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 
     <section class="container">
-    <h1>Gráfico Salário/Processador</h1>
+    <h1>Processador</h1>
     <div id="curve_chart" style="width: 900px; height: 500px">
     </section>
 <!-- start Gráfico-->
   
+<section class="container" id="goot">
 <section>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -108,9 +110,48 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
       }
     </script>
   </section>
+  
 
 <!-- end Gráfico-->
 <!-- start sections de manipulação de dados-->
+
+<section>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["ANO", "DADO", { role: "style" } ],
+        <?php foreach($list as $user):?>
+          ['<?=$user['yearlucas'];?>', <?=$user['valuelucas'];?>, "X"],
+          <?php endforeach; ?>
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Processador",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+
+</section>
+</section>
+
 <section class="container">
   
   <section>
@@ -118,6 +159,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
         <form action="insert.php" method="post">
         
         <input type="hidden" name="table" value="<?=$table?>"  readonly>
+        <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
               
             <div>
                 <label for="dado">Digite o dado  a ser representado:</label>
@@ -158,6 +200,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
     <form action="update.php?id=<?= $user['idlucas']; ?>" method="post">
   <!--<a href="updateSalario.php?id=<?= $user['idlucas']; ?>">Editar</a>-->
   <input type="hidden" name="table" value="<?=$table?>"  readonly>
+  <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
   <button > Editar Dados!</button>
   
   </form>
@@ -165,6 +208,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
   <form action="delete.php?id=<?= $user['idlucas']; ?>" method="POST">
   <!--<a href="deleteSalario.php?id=<?= $user['idlucas']; ?>">Deletar</a>-->
   <input type="hidden" name="table" value="<?=$table?>"  readonly>
+  <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
   <button >Deletar Dados</button>
   
   </form>

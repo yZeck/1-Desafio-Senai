@@ -71,3 +71,7 @@ list-style: none;
     justify-content: space-between;
 
 }
+#goot{
+    display: flex;
+    justify-content: space-between;
+}

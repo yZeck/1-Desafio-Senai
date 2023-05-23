@@ -1,6 +1,7 @@
 <?php
 
 require_once "./conn.php";
+$pg = "pgPIB.php";
 $table = "5graphiclucas";
 $query =  "SELECT * FROM $table";
 $stmt = $conn->prepare($query);
@@ -118,6 +119,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
         <form action="insert.php" method="post">
         
         <input type="hidden" name="table" value="<?=$table?>"  readonly>
+        <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
               
             <div>
                 <label for="dado">Digite o dado  a ser representado:</label>
@@ -158,6 +160,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
     <form action="update.php?id=<?= $user['idlucas']; ?>" method="post">
   <!--<a href="updateSalario.php?id=<?= $user['idlucas']; ?>">Editar</a>-->
   <input type="hidden" name="table" value="<?=$table?>"  readonly>
+  <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
   <button > Editar Dados!</button>
   
   </form>
@@ -165,6 +168,7 @@ $list= $stmt->fetchAll(PDO::FETCH_ASSOC);
   <form action="delete.php?id=<?= $user['idlucas']; ?>" method="POST">
   <!--<a href="deleteSalario.php?id=<?= $user['idlucas']; ?>">Deletar</a>-->
   <input type="hidden" name="table" value="<?=$table?>"  readonly>
+  <input type="hidden" name="pg" value="<?=$pg?>"  readonly>
   <button >Deletar Dados</button>
   
   </form>
