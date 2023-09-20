@@ -5,25 +5,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import DAO.FrutasDAO;
+import DTO.FrutasDTO;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import DTO.FrutasDTO;
-import DAO.FrutasDAO;
-public class CadastroFrutas extends JFrame {
+public class AlterDadosFrutas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField tfquantidade;
-	private JTextField tfpreco;
 	private JTextField tfNome;
 	private JTextField tfDescricao;
-	private JButton btDeletar;
+	private JTextField tfPreco;
+	private JTextField tfQuantidade;
 	private JTextField tfId;
+	private JLabel lblNewLabel_3;
 	private JButton btnNewButton;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -32,7 +35,7 @@ public class CadastroFrutas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroFrutas frame = new CadastroFrutas();
+					AlterDadosFrutas frame = new AlterDadosFrutas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,22 +43,23 @@ public class CadastroFrutas extends JFrame {
 			}
 		});
 	}
-/**
+
+	/**
 	 * Create the frame.
 	 */
-	public CadastroFrutas() {
+	public AlterDadosFrutas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 505, 310);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nome");
-		contentPane.add(lblNewLabel_2);
+		JLabel lblNome = new JLabel("Nome");
+		contentPane.add(lblNome);
 		
-		JLabel Nome = new JLabel("Descri\u00E7\u00E3o");
-		contentPane.add(Nome);
+		JLabel lblNewLabel_2 = new JLabel("Descricao");
+		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Preco");
 		contentPane.add(lblNewLabel_1);
@@ -63,33 +67,41 @@ public class CadastroFrutas extends JFrame {
 		JLabel lblNewLabel = new JLabel("quantidade");
 		contentPane.add(lblNewLabel);
 		
+		lblNewLabel_3 = new JLabel("ID");
+		contentPane.add(lblNewLabel_3);
+		
 		tfNome = new JTextField();
-		contentPane.add(tfNome);
 		tfNome.setColumns(10);
+		contentPane.add(tfNome);
 		
 		tfDescricao = new JTextField();
-		contentPane.add(tfDescricao);
 		tfDescricao.setColumns(10);
+		contentPane.add(tfDescricao);
 		
-		tfpreco = new JTextField();
-		contentPane.add(tfpreco);
-		tfpreco.setColumns(10);
+		tfPreco = new JTextField();
+		tfPreco.setColumns(10);
+		contentPane.add(tfPreco);
 		
-		tfquantidade = new JTextField();
-		contentPane.add(tfquantidade);
-		tfquantidade.setColumns(10);
+		tfQuantidade = new JTextField();
+		tfQuantidade.setColumns(10);
+		contentPane.add(tfQuantidade);
 		
-		JButton btCadastrar = new JButton("Cadastrar Produto");
-		btCadastrar.addActionListener(new ActionListener() {
-			
+		tfId = new JTextField();
+		tfId.setColumns(10);
+		contentPane.add(tfId);
+		
+		
+		JButton btnAlterarProduto = new JButton("Alterar Produto");
+		btnAlterarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				 String nome, descricao, preco, quantidade;
-			        
-			        nome = tfNome.getText();
+				String nome, descricao, preco, quantidade,id;
+				
+				 nome = tfNome.getText();
 			        descricao = tfDescricao.getText();
-			        preco = tfpreco.getText();
-			        quantidade = tfquantidade.getText();
+			        preco = tfPreco.getText();
+			        quantidade = tfQuantidade.getText();
+			        id = tfId.getText();
 			        
 			        FrutasDTO objfrutasdto = new FrutasDTO();
 			        
@@ -98,36 +110,27 @@ public class CadastroFrutas extends JFrame {
 			        objfrutasdto.setPreco(preco);
 			        objfrutasdto.setQuantidade(quantidade);
 			        
+			        
 			        FrutasDAO objfrutasDAO = new FrutasDAO();
-			        objfrutasDAO.cadastrarFrutas(objfrutasdto);
+			        objfrutasDAO.alterarFrutas(id,objfrutasdto);
+			        
 			}
 		});
-		contentPane.add(btCadastrar);
 		
-		btDeletar = new JButton("Deletar Produto");
-		btDeletar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String id = tfId.getText();
-				FrutasDAO objfrutasDAO = new FrutasDAO();
-		        objfrutasDAO.DeleteFrutas(id);
-			}
-			
-		});
-		contentPane.add(btDeletar);
 		
-		tfId = new JTextField();
-		tfId.setText("Digite o id");
-		contentPane.add(tfId);
-		tfId.setColumns(10);
 		
-		btnNewButton = new JButton("Alterar Dados de Frutas");
+		btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new AlterDadosFrutas().setVisible(true);
+				new CadastroFrutas().setVisible(true);
 			}
 		});
 		contentPane.add(btnNewButton);
+		
+		
+		contentPane.add(btnAlterarProduto);
 	}
+	
+	
 
 }
